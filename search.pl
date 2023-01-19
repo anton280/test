@@ -33,8 +33,7 @@ exit if !$query;
 $query=$dbh->quote($query);
 
 
-$q=qq|SELECT created,int_id,str FROM log WHERE address=$query ORDER BY created DESC, int_id DESC LIMIT $MAX_LINES|;
-$sth=$dbh->prepare($q);
+$sth=$dbh->prepare("SELECT created,int_id,str FROM log WHERE address=$query ORDER BY created DESC, int_id DESC LIMIT $MAX_LINES");
 $sth->execute;
 
 @out=();
@@ -42,8 +41,7 @@ while($hash_ref=$sth->fetchrow_hashref){
  $int_id=$hash_ref->{int_id};
  push @out,$hash_ref->{created}.' '.$hash_ref->{str};
 
- $q=qq|SELECT created,str FROM message WHERE int_id='$int_id' ORDER BY created DESC, int_id DESC LIMIT $MAX_LINES|;
- $sth2=$dbh->prepare($q);
+ $sth2=$dbh->prepare("SELECT created,str FROM message WHERE int_id='$int_id' ORDER BY created DESC, int_id DESC LIMIT $MAX_LINES");
  $sth2->execute;
  while($hash_ref2=$sth2->fetchrow_hashref){
   push @out,$hash_ref2->{created}.' '.$hash_ref2->{str};
