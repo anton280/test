@@ -1,6 +1,6 @@
-$DB_NAME='tubes_db';
-$DB_USER='tubes_db';
-$DB_PASS='lmHupHWiE2ui';
+$DB_NAME='xxx_db';
+$DB_USER='yyy';
+$DB_PASS='zzz';
 ################################################################################
 sub mysql_connect{
  unless($dbh = DBI->connect(
