@@ -2,6 +2,7 @@ $DB_NAME='tubes_db';
 $DB_USER='tubes_db';
 $DB_PASS='lmHupHWiE2ui';
 ################################################################################
+sub mysql_connect{
  unless($dbh = DBI->connect(
 	"dbi:mysql:database=$DB_NAME;mysql_enable_utf8=1",
 	$DB_USER,
@@ -16,6 +17,7 @@ $DB_PASS='lmHupHWiE2ui';
 }
 ################################################################################
 sub get_env{
+ my($buf,$val,$name,$i,@fval,%INPUT)=();
  if($ENV{'REQUEST_METHOD'} eq 'POST'){read(STDIN,$buf,$ENV{'CONTENT_LENGTH'})}
  else{$buf=$ENV{'QUERY_STRING'}}
  if($buf ne ""){
